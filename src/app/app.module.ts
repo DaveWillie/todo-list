@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material-module';
+import { AngularFireModule } from '@angular/fire';
 
 //Routing
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -42,6 +43,15 @@ import { LocalStorageService } from './services/local.storage.service';
     MaterialModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyC58MiPnKFTISC2LB3acYkcXaSR4bmTAgs',
+      authDomain: 'to-do-list-45d2e.firebaseapp.com',
+      projectId: 'to-do-list-45d2e',
+      storageBucket: 'to-do-list-45d2e.appspot.com',
+      messagingSenderId: '932425395208',
+      appId: '1:932425395208:web:bc070a22e2b224ca5df5bd',
+      measurementId: 'G-HERRTMGPQR',
+    }),
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent],
