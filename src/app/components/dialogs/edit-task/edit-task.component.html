@@ -1,0 +1,19 @@
+<div>
+  <div class="editContainer" fxLayout="row" fxLayoutAlign="start center">
+    <h2>Edit Task</h2>
+  </div>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Task</mat-label>
+    <textarea
+      class="textareaHeight"
+      matInput
+      placeholder="Enter your task description..."
+      [(ngModel)]="taskDescription"
+    ></textarea>
+  </mat-form-field>
+  <div class="marginTop30" fxLayout="row" fxLayoutAlign="center center">
+    <button color="accent" mat-flat-button (click)="editTask()">
+      Save and Update
+    </button>
+  </div>
+</div>

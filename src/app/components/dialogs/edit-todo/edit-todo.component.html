@@ -1,0 +1,19 @@
+<div>
+  <div class="editContainer" fxLayout="row" fxLayoutAlign="start center">
+    <h2>Edit To-Do List title</h2>
+  </div>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Task</mat-label>
+    <textarea
+      class="textareaHeight"
+      matInput
+      placeholder="Enter your To-Do list description..."
+      [(ngModel)]="todoDescription"
+    ></textarea>
+  </mat-form-field>
+  <div class="marginTop30" fxLayout="row" fxLayoutAlign="center center">
+    <button color="accent" mat-flat-button (click)="editTodo()">
+      Save and Update
+    </button>
+  </div>
+</div>

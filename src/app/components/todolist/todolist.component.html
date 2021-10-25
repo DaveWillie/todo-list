@@ -1,0 +1,157 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'push' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-toolbar>To-Do List</mat-toolbar>
+      <button
+        mat-mini-fab
+        color="accent"
+        (click)="openAddTodo()"
+        style="margin-right: 15px"
+      >
+        <mat-icon matTooltip="Create a new To-Do List">add</mat-icon>
+      </button>
+    </div>
+
+    <mat-nav-list>
+      <div *ngIf="todo">
+        <div *ngFor="let todo of todo.list; let i = index">
+          <mat-card class="todoCard" [class.selected_card]="i == selectedIndex">
+            <div
+              class="todoTitle"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              fxFlex
+              (click)="loadTasks(i)"
+            >
+              {{ todo.title }}
+            </div>
+
+            <div fxLayoutAlign="start center" class="todoIconSection">
+              <mat-icon
+                (click)="openEditTodo(todo, i)"
+                class="edit_button"
+                matTooltip="Edit To-Do list"
+                matTooltipPosition="above"
+                [class.selected_icon]="i == selectedIndex"
+                >edit</mat-icon
+              >
+              <mat-icon
+                (click)="openDeleteTodo(todo.id)"
+                class="delete_button"
+                matTooltip="Delete To-Do list"
+                matTooltipPosition="above"
+                [class.selected_icon]="i == selectedIndex"
+                >delete</mat-icon
+              >
+            </div></mat-card
+          >
+          <br />
+        </div>
+      </div>
+      <div *ngIf="!todo || todo.list.length == 0" style="margin: 15px 15px">
+        You currently don't have any todo lists, add a new todo list above to
+        get started....
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button
+        type="button"
+        style="color: white"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon" class="menu-toggle"
+          >menu</mat-icon
+        >
+      </button>
+
+      <div class="resetSystem">
+        <button color="accent" mat-flat-button (click)="resetSystem()">
+          Reset System
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <div style="margin-top: 40px" fxLayout="row" fxLayoutAlign="center center">
+      <div
+        fxFlex.lg="70%"
+        fxFlex.md="70%"
+        fxFlex.sm="90%"
+        fxFlex.xs="90%"
+        *ngIf="selectedTodo"
+      >
+        <div style="margin-bottom: 15px">
+          <div fxLayout="row" fxFlex>
+            <h1>{{ selectedTodo.title }} ({{ selectedTodo.tasks.length }})</h1>
+          </div>
+          <button mat-mini-fab color="accent" (click)="openAddTask()">
+            <mat-icon matTooltip="Create a new Task" matTooltipPosition="above"
+              >add</mat-icon
+            >
+          </button>
+        </div>
+        <div *ngIf="selectedTodo.tasks.length > 0">
+          <div
+            cdkDropList
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let task of selectedTodo.tasks; let i = index"
+              cdkDrag
+            >
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <mat-checkbox
+                  style="margin-left: 15px"
+                  (change)="checkTask($event.checked, i)"
+                  color="accent"
+                  [checked]="task.status"
+                ></mat-checkbox>
+              </div>
+              <div
+                style="margin-left: 15px"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxFlex
+              >
+                {{ task.content }}
+              </div>
+
+              <div>
+                <mat-icon
+                  (click)="openEditTask(task, i)"
+                  class="edit_button"
+                  matTooltip="Edit Task"
+                  matTooltipPosition="above"
+                  >edit</mat-icon
+                >
+                <mat-icon
+                  (click)="openDeleteTask(task.id)"
+                  class="delete_button"
+                  matTooltip="Delete Task"
+                  matTooltipPosition="above"
+                  >delete</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div *ngIf="selectedTodo.tasks.length == 0">
+          You currently don't have any tasks yet, add a new task above to
+          populate the list....
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

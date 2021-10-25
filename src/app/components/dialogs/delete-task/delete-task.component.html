@@ -1,0 +1,26 @@
+<br />
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="start center"
+>
+  <div fxFlex fxLayoutAlign="center">
+    <i class="material-icons warningIcon">warning</i>
+    <h4>Are you sure that you want to delete the Task?</h4>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%">
+  <div fxFlex fxLayoutAlign="end">
+    <div mat-dialog-actions class="marginRight15">
+      <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    </div>
+    <div mat-dialog-actions>
+      <button color="warn" mat-flat-button (click)="deleteTask()">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
