@@ -11,8 +11,6 @@ import { DeleteTodoComponent } from '../dialogs/delete-todo/delete-todo.componen
 import { EditTodoComponent } from '../dialogs/edit-todo/edit-todo.component';
 import { EditTaskComponent } from '../dialogs/edit-task/edit-task.component';
 import { LocalStorageService } from 'src/app/services/local.storage.service';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-todolist',
   templateUrl: './todolist.component.html',
@@ -58,7 +56,6 @@ export class TodolistComponent implements OnInit {
     );
 
   constructor(
-    private router: Router,
     private localStorageService: LocalStorageService,
     private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog

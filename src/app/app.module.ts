@@ -8,9 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material-module';
 import { AngularFireModule } from '@angular/fire';
 
-//Routing
-import { AppRoutingModule } from './app-routing/app-routing.module';
-
 //Components
 import { AppComponent } from './app.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
@@ -42,7 +39,6 @@ import { LocalStorageService } from './services/local.storage.service';
     LayoutModule,
     MaterialModule,
     ToastrModule.forRoot(),
-    AppRoutingModule,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyC58MiPnKFTISC2LB3acYkcXaSR4bmTAgs',
       authDomain: 'to-do-list-45d2e.firebaseapp.com',
